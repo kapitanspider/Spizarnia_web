@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Moja Spiżarnia</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="header">
+	<h1>Dodawanie produktu</h1>
+</div>
+<div id="menu">
+	<h2>Menu</h2>
+	<div id="navbar">
+		<a href="produkty.html">
+		<div class="navbutton">
+		<h3>Produkty</h3>
+		</div>
+		</a>
+		</a>
+		<a href="dodawanie_produktu.html">
+		<div class="navbutton">
+		<h3>Dodawanie produktu</h3>
+		</div>
+		</a>
+		</a>
+		<a href="dodawanie_kategorii.html">
+		<div class="navbutton">
+		<h3>Dodawanie kategorii</h3>
+		</div>
+		</a>
+	</div>
+</div>
+<div id="content">
+<h3>Nazwa Produktu</h3>
+<input type="text" id="nazwaProduktu">
+<h3>Ilość</h3>
+<input type="number" id="ilosc">
+<h3>Kategorie Produktów</h3>
+<select type="text" id="kategorieProdukty"></select>
+<h3>Kategorie Zakupy</h3>
+<select  type="text" id="kategorieZakupy"></select>
+<h3>Miara</h3>
+<select  type="text" id="miara"></select>
+<h3>AutoZakup</h3>
+<input type="checkbox" id="autoZakup">
+<h3>Próg Auto Zakupu</h3>
+<input type="number" id="progAutoZakupu">
+
+
+
+<button onclick="addProduct()">Dodaj produkt</button>
+</div>
+<script src="js/backendless.min.js"></script>
+<script src="js/app_init.js"></script>
+<script src="js/dodawanie_produktu.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Moja Spiżarnia</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="header">
+	<h1>Dodawanie kategorii</h1>
+</div>
+<div id="menu">
+	<h2>Menu</h2>
+	<div id="navbar">
+		<a href="produkty.html">
+		<div class="navbutton">
+		<h3>Produkty</h3>
+		</div>
+		</a>
+		</a>
+		<a href="dodawanie_produktu.html">
+		<div class="navbutton">
+		<h3>Dodawanie produktu</h3>
+		</div>
+		</a>
+		<a href="dodawanie_kategorii.html">
+		<div class="navbutton">
+		<h3>Dodawanie kategorii</h3>
+		</div>
+		</a>
+	</div>
+</div>
+<div id="content">
+<h3>Nazwa Kategorii</h3>
+<input type="text" id="nazwa">
+<h3>Lista</h3>
+<select  type="text" id="lista">
+<option value='produkty'>Produkty</option>
+<option value='zakupy'>Zakupy</option>
+</select>
+
+
+
+
+<button onclick="addProduct()">Dodaj produkt</button>
+</div>
+<script src="js/backendless.min.js"></script>
+<script src="js/app_init.js"></script>
+<script src="js/dodawanie_produktu.js"></script>
+
+</body>
+</html>

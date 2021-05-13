@@ -1,0 +1,93 @@
+body {
+    background-color: #FFFFFF;
+}
+
+#header {
+	background-color: #01FFFF;
+	width: 100vw;
+	display: block;
+	text-align: center;
+	padding: 50px 0;
+}
+
+#menu {
+	float: left;
+	background-color: #01FFFF;
+	width: 15vw;
+	height: 100vh;
+	display: block;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#content{
+	float: left;
+	background-color: #FFFF00;
+	width: 82vw;
+	height: 100vh;
+	display: block;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#navbar {
+	background-color: #C4C4C4;
+	width: 80%;
+	height: 90%;
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+	padding: 5px 0 ;
+}
+.navbutton {
+	background-color: #01FFFF;
+	width: 80%;
+	display: block;
+	text-align: center;
+	margin: 10%;
+	border-radius: 10px;
+}
+
+.navbutton:hover{
+	background-color: #00FF00;
+}
+
+.product {
+	background-color: #01FFFF;
+	width: 20%;
+	height:30px;
+	display: block;
+	text-align: center;
+	margin: 2%;
+	border-radius: 10px;
+	float: left;
+	padding:5px;
+}
+.product table{
+	border: 1px solid black;
+}
+
+input[type=text], select {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 90%;
+  background-color: #01FFFF;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00FF00;
+}
