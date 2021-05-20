@@ -7,6 +7,7 @@ function addCategory() {
 	const testTableStore = Backendless.Data.of('Kategorie');
 	testTableStore.save(category)
       .then(function (object) {
+		  
       })
 	document.getElementById("content").innerHTML += "<h3>"+"Dodano kategorię "+category.nazwa+"</h3>";
 }

@@ -39,6 +39,22 @@ body {
 	margin: 0 auto;
 	padding: 5px 0 ;
 }
+#tabelaAtrybotow{
+	text-align: center;
+	border: 1px solid black;
+	width: 100%;
+}
+#tabelaAtrybotow td{
+	border: 1px solid black;
+}
+#tabelaZakupow{
+	text-align: center;
+	border: 1px solid black;
+	width: 100%;
+}
+#tabelaZakupow td{
+	border: 1px solid black;
+}
 .navbutton {
 	background-color: #01FFFF;
 	width: 80%;

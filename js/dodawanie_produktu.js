@@ -17,7 +17,7 @@ function addProduct() {
 }
 
 function fetchOptions(){
-	console.log("XD")
+	// console.log("XD")
 	var whereClause = "lista = 'produkty'";
 	var queryBuilder = Backendless.DataQueryBuilder.create();
 	queryBuilder.setPageSize(100);
@@ -29,10 +29,10 @@ function fetchOptions(){
 		var lista="";
 		for(var i=0;i<result.length;i++)
 		{
-			//console.log(result[i].foo);
+			//// console.log(result[i].foo);
 			lista+="<option value="+result[i].nazwa+">"+result[i].nazwa+"</option>";
 		}
-		console.log(result.length);
+		// console.log(result.length);
 		document.getElementById("kategorieProdukty").innerHTML = lista;
 		return(result)
 	})
@@ -50,10 +50,10 @@ function fetchOptions(){
 		var lista="";
 		for(var i=0;i<result.length;i++)
 		{
-			//console.log(result[i].foo);
+			//// console.log(result[i].foo);
 			lista+="<option value="+result[i].nazwa+">"+result[i].nazwa+"</option>";
 		}
-		console.log(result.length);
+		// console.log(result.length);
 		document.getElementById("kategorieZakupy").innerHTML = lista;
 		return(result)
 	})
@@ -69,10 +69,10 @@ function fetchOptions(){
 		var lista="";
 		for(var i=0;i<result.length;i++)
 		{
-			//console.log(result[i].foo);
+			//// console.log(result[i].foo);
 			lista+="<option value="+result[i].nazwa+">"+result[i].nazwa+"</option>";
 		}
-		console.log(result.length);
+		// console.log(result.length);
 		document.getElementById("miara").innerHTML = lista;
 		return(result)
 	})
