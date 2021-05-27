@@ -1,5 +1,5 @@
 body {
-    background-color: #FFFFFF;
+    background-color: #D3D3D3;
 }
 
 #header {
@@ -22,7 +22,7 @@ body {
 
 #content{
 	float: left;
-	background-color: #FFFF00;
+	background-color: #D3D3D3;
 	width: 82vw;
 	height: 100vh;
 	display: block;
@@ -47,13 +47,15 @@ body {
 #tabelaAtrybotow td{
 	border: 1px solid black;
 }
-#tabelaZakupow{
+.tabelaZakupow{
 	text-align: center;
 	border: 1px solid black;
-	width: 100%;
+	width: 90%;
+	margin:0 auto;
 }
-#tabelaZakupow td{
+.tabelaZakupow td{
 	border: 1px solid black;
+	width:25%;
 }
 .navbutton {
 	background-color: #01FFFF;
@@ -71,7 +73,7 @@ body {
 .product {
 	background-color: #01FFFF;
 	width: 20%;
-	height:30px;
+	height:40px;
 	display: block;
 	text-align: center;
 	margin: 2%;
@@ -81,6 +83,7 @@ body {
 }
 .product table{
 	border: 1px solid black;
+	
 }
 
 input[type=text], select {

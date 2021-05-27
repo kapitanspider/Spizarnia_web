@@ -2,13 +2,19 @@ function getlista() {
   
 	var queryBuilder = Backendless.DataQueryBuilder.create();
 	queryBuilder.setPageSize(100);
-	queryBuilder.setSortBy( ["created"] );
+	queryBuilder.setSortBy( ["kategoriaZakupy"] );
 	Backendless.Data.of( "Lista_Zakupow" ).find(queryBuilder)
 	.then( function( result ) {
 		var lista="";
-		lista+="<table id='tabelaZakupow'>"
+		var kategoria="";
 		for(var i=0;i<result.length;i++)
 		{
+			if (kategoria!=result[i].kategoriaZakupy)
+			{
+				kategoria=result[i].kategoriaZakupy;
+				lista+="</table><h2>"+kategoria+"</h2><table class='tabelaZakupow'>"
+				
+			}
 			lista+="<tr><td>"+result[i].nazwaProduktu+"</td><td>"+result[i].miara+"</td><td>"+result[i].kategoriaZakupy+"</td><td>"+result[i].ilosc+"</td></tr>";
 		}
 		lista+="</table>";
@@ -19,6 +25,32 @@ function getlista() {
 	.catch( function( error ) {
 	});
 	
+}
+function autoadd(){
+	var whereClause = "autoZakup = 1 and nazwaProduktu not in(Lista_Zakupow[].nazwaProduktu) and ilosc < progAutoZakupu";
+	var queryBuilder = Backendless.DataQueryBuilder.create();
+	queryBuilder.setPageSize(100);
+	queryBuilder.setSortBy( ["created"] );
+	queryBuilder.setWhereClause(whereClause);
+	Backendless.Data.of( "Produkt" ).find(queryBuilder)
+	.then( function( result ) {
+	for(var i=0;i<result.length;i++)
+	{
+		var obiekt = {
+			miara : result[i].miara,
+			nazwaProduktu: result[i].nazwaProduktu,
+			kategoriaZakupy: result[i].kategorieZakupy,
+			ilosc: result[i].progAutoZakupu - result[i].ilosc,
+			objectIdProduktu: result[i].objectId
+		}
+		console.log(obiekt)
+	const tableAtrybuty = Backendless.Data.of('Lista_Zakupow');
+	tableAtrybuty.save(obiekt)
+      .then(function (object) {
+    })
+	}
+	})
+	getlista()
 }
 
 function addToList(){
@@ -103,7 +135,7 @@ function addToListDB(){
 		miara : document.getElementById("miara").value,
 		nazwaProduktu: document.getElementById("produkt").value,
 		kategoriaZakupy: document.getElementById("kategorieZakupy").value,
-		ilosc: (document.getElementById("ilosc").value *1)		
+		ilosc: (document.getElementById("ilosc").value *1)	
 	}
 	const tableAtrybuty = Backendless.Data.of('Lista_Zakupow');
 	tableAtrybuty.save(obiekt)
@@ -112,5 +144,4 @@ function addToListDB(){
       })
 	
 }
-
-getlista()
+autoadd()

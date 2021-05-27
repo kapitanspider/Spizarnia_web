@@ -8,7 +8,8 @@ function getProducts() {
 		var lista="";
 		for(var i=0;i<result.length;i++)
 		{
-			lista+="<div class='product' onclick="+'productEditor("'+result[i].objectId+'")'+">"+result[i].nazwaProduktu+"</div>";
+			lista+="<div class='product' onclick="+'productEditor("'+result[i].objectId+'")'+">"+result[i].nazwaProduktu+"</br>"+" Ilość: "+result[i].ilosc+"</div>";
+			
 		}
 		// console.log(result.length);
 		document.getElementById("content").innerHTML = lista;
