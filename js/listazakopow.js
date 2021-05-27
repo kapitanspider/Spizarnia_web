@@ -27,7 +27,7 @@ function getlista() {
 	
 }
 function autoadd(){
-	var whereClause = "autoZakup = 1 and nazwaProduktu not in(Lista_Zakupow[].nazwaProduktu) and ilosc < progAutoZakupu";
+	var whereClause = "autoZakup = 1 and objectId not in(Lista_Zakupow[].objectIdProduktu) and ilosc < progAutoZakupu";
 	var queryBuilder = Backendless.DataQueryBuilder.create();
 	queryBuilder.setPageSize(100);
 	queryBuilder.setSortBy( ["created"] );

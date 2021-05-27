@@ -2,16 +2,14 @@ function getProducts() {
   
 	var queryBuilder = Backendless.DataQueryBuilder.create();
 	queryBuilder.setPageSize(100);
-	queryBuilder.setSortBy( ["created"] );
+	queryBuilder.setSortBy( ["kategorieProdukty DESC"] );
 	Backendless.Data.of( "Produkt" ).find(queryBuilder)
 	.then( function( result ) {
 		var lista="";
 		for(var i=0;i<result.length;i++)
 		{
-			lista+="<div class='product' onclick="+'productEditor("'+result[i].objectId+'")'+">"+result[i].nazwaProduktu+"</br>"+" Ilość: "+result[i].ilosc+"</div>";
-			
+			lista+="<div class='product' onclick="+'productEditor("'+result[i].objectId+'")'+">Nazwa: "+result[i].nazwaProduktu+"</br>"+" Ilość: "+result[i].ilosc+"</br>Kategoria: "+result[i].kategorieProdukty+"</div>";
 		}
-		// console.log(result.length);
 		document.getElementById("content").innerHTML = lista;
 		return(result)
 	})
@@ -29,7 +27,7 @@ function productEditor(id)
 	lista+=result.nazwaProduktu
 	document.getElementById("nag").innerHTML += lista;
 	})
-	document.getElementById("content").innerHTML += "<h3 id='nag'>Dodaj atrybut do produktu : </h3>";
+	document.getElementById("content").innerHTML += "<h3 id='nag'>Atrybuty produktu: </h3>";
 	var queryBuilder = Backendless.DataQueryBuilder.create();
 	queryBuilder.setPageSize(100);
 	queryBuilder.setSortBy( ["created"] );

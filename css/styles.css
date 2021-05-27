@@ -1,12 +1,12 @@
 body {
     background-color: #D3D3D3;
-	width: 100vw;
-	height: 100vh;
+	size:auto;
 }
 
 #header {
 	background-color: #01FFFF;
 	width: 100%;
+	height:10%;
 	display: block;
 	text-align: center;
 	padding: 50px 0;
@@ -16,7 +16,7 @@ body {
 	float: left;
 	background-color: #01FFFF;
 	width: 15%;
-	height: 100%;
+	height: 78.5vh;
 	display: block;
 	text-align: center;
 	padding-top: 20px;
@@ -35,7 +35,7 @@ body {
 #navbar {
 	background-color: #C4C4C4;
 	width: 80%;
-	height: 90%;
+	height: 80%;
 	display: block;
 	text-align: center;
 	margin: 0 auto;
@@ -68,7 +68,6 @@ body {
 	margin: 10%;
 	border-radius: 10px;
 }
-
 .navbutton:hover{
 	background-color: #00FF00;
 }
@@ -76,7 +75,7 @@ body {
 .product {
 	background-color: #01FFFF;
 	width: 20%;
-	height:40px;
+	height:50px;
 	display: block;
 	text-align: center;
 	margin: 2%;
@@ -92,6 +91,7 @@ body {
 	border: 1px solid black;
 	
 }
+
 
 input[type=text], select {
   width: 90%;

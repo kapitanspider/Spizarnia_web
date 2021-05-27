@@ -18,7 +18,6 @@ function trybZakupowy() {
 			lista+="<tr><td>"+result[i].nazwaProduktu+"</td><td>"+result[i].miara+"</td><td>"+result[i].kategoriaZakupy+"</td><td>"+result[i].ilosc+"</td><td><input type='number' id='"+result[i].objectIdProduktu+"' value='"+result[i].ilosc+"'></td><td><button onclick=buy('"+result[i].objectIdProduktu+"')>Kup</button></td></tr>";
 		}
 		lista+="</table>";
-		lista+="<button onclick='addToList()'>Dodaj produkt do listy zakupów</button>"
 		document.getElementById("content").innerHTML = lista;
 		
 	})
