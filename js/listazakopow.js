@@ -2,10 +2,10 @@ function getlista() {
   
 	var queryBuilder = Backendless.DataQueryBuilder.create();
 	queryBuilder.setPageSize(100);
-	queryBuilder.setSortBy( ["kategoriaZakupy"] );
+	queryBuilder.setSortBy( ["kategoriaZakupy DESC"] );
 	Backendless.Data.of( "Lista_Zakupow" ).find(queryBuilder)
 	.then( function( result ) {
-		var lista="";
+		var lista="<table class='tabelaZakupow'><tr><td>Nazwa Produktu</td><td>Kategoria Zakupowa</td><td>Miara</td><td>Ilość</td></tr>";
 		var kategoria="";
 		for(var i=0;i<result.length;i++)
 		{
@@ -15,7 +15,7 @@ function getlista() {
 				lista+="</table><h2>"+kategoria+"</h2><table class='tabelaZakupow'>"
 				
 			}
-			lista+="<tr><td>"+result[i].nazwaProduktu+"</td><td>"+result[i].miara+"</td><td>"+result[i].kategoriaZakupy+"</td><td>"+result[i].ilosc+"</td></tr>";
+			lista+="<tr><td>"+result[i].nazwaProduktu+"</td><td>"+result[i].kategoriaZakupy+"</td><td>"+result[i].miara+"</td><td>"+result[i].ilosc+"</td></tr>";
 		}
 		lista+="</table>";
 		lista+="<button onclick='addToList()'>Dodaj produkt do listy zakupów</button>"
@@ -49,8 +49,9 @@ function autoadd(){
       .then(function (object) {
     })
 	}
+	getlista();
 	})
-	getlista()
+	
 }
 
 function addToList(){
@@ -135,13 +136,25 @@ function addToListDB(){
 		miara : document.getElementById("miara").value,
 		nazwaProduktu: document.getElementById("produkt").value,
 		kategoriaZakupy: document.getElementById("kategorieZakupy").value,
-		ilosc: (document.getElementById("ilosc").value *1)	
+		ilosc: (document.getElementById("ilosc").value *1),
+		objectIdProduktu: null
 	}
-	const tableAtrybuty = Backendless.Data.of('Lista_Zakupow');
-	tableAtrybuty.save(obiekt)
-      .then(function (object) {
-		  	getlista()
-      })
+	var whereClause = "nazwaProduktu = '"+obiekt.nazwaProduktu+"'";
+	var queryBuilder = Backendless.DataQueryBuilder.create();
+	queryBuilder.setPageSize(100);
+	queryBuilder.setSortBy( ["created"] );
+	queryBuilder.setWhereClause(whereClause);
+	Backendless.Data.of( "Produkt" ).find(queryBuilder)
+	.then( function( result ) {
+		obiekt.objectIdProduktu=result[0].objectId;
+		const tableAtrybuty = Backendless.Data.of('Lista_Zakupow');
+		tableAtrybuty.save(obiekt)
+		.then(function (object) {
+			getlista()
+		})
+	})
+	
+	
 	
 }
 autoadd()

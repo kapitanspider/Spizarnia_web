@@ -29,7 +29,7 @@ function productEditor(id)
 	lista+=result.nazwaProduktu
 	document.getElementById("nag").innerHTML += lista;
 	})
-	document.getElementById("content").innerHTML += "<h3 id='nag'>Dodaj atrybut do produktu : </h3><input type='text' id='nazwaAtrybutu'><button onclick="+'dodajAtrybut("'+id+'")'+">Dodaj produkt</button>";
+	document.getElementById("content").innerHTML += "<h3 id='nag'>Dodaj atrybut do produktu : </h3>";
 	var queryBuilder = Backendless.DataQueryBuilder.create();
 	queryBuilder.setPageSize(100);
 	queryBuilder.setSortBy( ["created"] );
@@ -39,13 +39,16 @@ function productEditor(id)
 	.then( function( result ) {
 		// console.log(result.length);
 		var lista="";
-		lista+="<table id='tabelaAtrybotow'>"
-		for(var i=0;i<result.length;i++)
-		{
-			lista+="<tr><td>"+result[i].nazwa+"</td></tr>";
+		if (result.length>0){
+			lista+="<table id='tabelaAtrybotow'>"
+			for(var i=0;i<result.length;i++)
+			{
+				lista+="<tr><td>"+result[i].nazwa+"</td></tr>";
+			}
+			lista+="</table>"
+			document.getElementById("content").innerHTML += lista
 		}
-		lista+="</table>"
-		document.getElementById("content").innerHTML += lista
+		document.getElementById("content").innerHTML += "<input type='text' id='nazwaAtrybutu'><button onclick="+'dodajAtrybut("'+id+'")'+">Dodaj atrybut</button>"
 	})
 	
 }
