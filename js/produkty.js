@@ -18,16 +18,17 @@ function getProducts() {
 }
 function productEditor(id)
 {
-	// console.log(id);
+	console.log(id);
 	var lista="";
 	document.getElementById("content").innerHTML = "";
+	document.getElementById("content").innerHTML += "<h3 id='nag'>Produkt: </h3>";
 	Backendless.Data.of( "Produkt" ).findById(id)
 	.then( function( result ) {
 	// console.log(result)
-	lista+=result.nazwaProduktu
+	lista+=result.nazwaProduktu;
 	document.getElementById("nag").innerHTML += lista;
+	document.getElementById("content").innerHTML +="<h4>Ilość</h4><input type='number'value='"+result.ilosc+"' id='"+id+"'><button onclick="+'zmienilosc("'+id+'")'+">Zmień ilość</button>";
 	})
-	document.getElementById("content").innerHTML += "<h3 id='nag'>Atrybuty produktu: </h3>";
 	var queryBuilder = Backendless.DataQueryBuilder.create();
 	queryBuilder.setPageSize(100);
 	queryBuilder.setSortBy( ["created"] );
@@ -36,7 +37,7 @@ function productEditor(id)
 	Backendless.Data.of( "Atrybuty" ).find(queryBuilder)
 	.then( function( result ) {
 		// console.log(result.length);
-		var lista="";
+		var lista="<h3>Atrybuty:</h3>";
 		if (result.length>0){
 			lista+="<table id='tabelaAtrybotow'>"
 			for(var i=0;i<result.length;i++)
@@ -62,6 +63,16 @@ function dodajAtrybut(id){
       .then(function (object) {
 		  	productEditor(id)
       })
+}
+
+function zmienilosc(id){
+	Backendless.Data.of( "Produkt" ).findById(id)
+	.then( function( result ) {
+	result.ilosc=(document.getElementById(id).value*1);
+	console.log(result);
+	Backendless.Data.of('Produkt').save(result);
+	})
+	
 }
 
 getProducts();

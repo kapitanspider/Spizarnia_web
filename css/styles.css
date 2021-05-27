@@ -1,6 +1,10 @@
 body {
     background-color: #D3D3D3;
-	size:auto;
+	width: 99vw;
+	height:78.5vh;
+	position: absolute;
+	top: 0;
+	bottom: 0;
 }
 
 #header {
@@ -16,7 +20,7 @@ body {
 	float: left;
 	background-color: #01FFFF;
 	width: 15%;
-	height: 78.5vh;
+	height: 100%;
 	display: block;
 	text-align: center;
 	padding-top: 20px;
@@ -44,7 +48,8 @@ body {
 #tabelaAtrybotow{
 	text-align: center;
 	border: 1px solid black;
-	width: 100%;
+	width: 90%;
+	margin:0 auto;
 }
 #tabelaAtrybotow td{
 	border: 1px solid black;
