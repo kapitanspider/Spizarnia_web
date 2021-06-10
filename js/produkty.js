@@ -6,19 +6,23 @@ function getProducts() {
 	Backendless.Data.of( "Produkt" ).find(queryBuilder)
 	.then( function( result ) {
 		var lista="";
+		var kategoria=""
 		for(var i=0;i<result.length;i++)
 		{
-			lista+="<div class='product' onclick="+'productEditor("'+result[i].objectId+'")'+">Nazwa: "+result[i].nazwaProduktu+"</br>"+" Ilość: "+result[i].ilosc+"</br>Kategoria: "+result[i].kategorieProdukty+"</div>";
+			if(kategoria!=result[i].kategorieProdukty)
+			{
+				kategoria=result[i].kategorieProdukty;
+				lista+="</table><h2>"+kategoria+"</h2><table class='tabelaZakupow'>"
+			}
+			lista+="<tr><td>"+result[i].nazwaProduktu+"</td><td>"+result[i].ilosc+"</td><td><button onclick=productEditor('"+result[i].objectId+"')>Edytuj</button></td></tr>";
 		}
 		document.getElementById("content").innerHTML = lista;
-		return(result)
 	})
 	.catch( function( error ) {
 	});
 }
 function productEditor(id)
 {
-	console.log(id);
 	var lista="";
 	document.getElementById("content").innerHTML = "";
 	document.getElementById("content").innerHTML += "<h3 id='nag'>Produkt: </h3>";
