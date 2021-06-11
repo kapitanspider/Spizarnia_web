@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Moja Spiżarnia</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="header">
+	<h1>Dodawanie kategorii</h1>
+</div>
+<div id="menu">
+	<h2>Menu</h2>
+	<div id="navbar">
+		<a href="tryb_zakupowy.html">
+		<div class="navbutton">
+		<h3>Tryb Zakupowy</h3>
+		</div>
+		</a>
+		<a href="listazakopow.html">
+		<div class="navbutton">
+		<h3>Lista Zakupów</h3>
+		</div>
+		</a>
+		<a href="produkty.html">
+		<div class="navbutton">
+		<h3>Produkty</h3>
+		</div>
+		</a>
+		<a href="dodawanie_produktu.html">
+		<div class="navbutton">
+		<h3>Dodawanie produktu</h3>
+		</div>
+		</a>
+		<a href="dodawanie_kategorii.html">
+		<div class="navbutton">
+		<h3>Dodawanie kategorii</h3>
+		</div>
+		</a>
+		<a href="dodawanie_miary.html">
+		<div class="navbutton">
+		<h3>Dodawanie miary</h3>
+		</div>
+		</a>
+	</div>
+</div>
+<div id="content">
+<div id="tables">
+</div>
+<div id="inputs">
+<h3>Nazwa Nowej Kategorii</h3>
+<input type="text" id="nazwa">
+<h3>Lista (Zakupy/Produkty)</h3>
+<select  type="text" id="lista">
+<option value='produkty'>Produkty</option>
+<option value='zakupy'>Zakupy</option>
+</select>
+
+
+
+
+<button onclick="addCategory()">Dodaj kategorię</button>
+</div>
+<div id="comm">
+</div>
+</div>
+<script src="js/dodawanie_kategorii.js"></script>
+
+</body>
+</html>
