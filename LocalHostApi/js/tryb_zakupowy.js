@@ -1,7 +1,7 @@
 function trybZakupowy() {
   
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://127.0.0.1:8080/shopping-list/all');
+	xhr.open('GET','http://127.0.0.1:8080/shopping-list/all-sorted-category-shopping');
 	xhr.responseType = 'json';
 	xhr.onload = () =>{
 		var lista="<table class='tabelaZakupow'><tr><td>Nazwa Produktu</td><td>Kategoria Produktu</td><td>Miara</td><td>Ilość</td><td>Ile kupujesz</td><td>Potwierdź zakup</td></tr>";

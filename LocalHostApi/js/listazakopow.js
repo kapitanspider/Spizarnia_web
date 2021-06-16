@@ -1,6 +1,6 @@
 function getlista() {
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://127.0.0.1:8080//shopping-list/all');
+	xhr.open('GET','http://127.0.0.1:8080//shopping-list/all-sorted-category-shopping');
 	xhr.responseType = 'json';
 	xhr.onload = () =>{
 		var lista="<table class='tabelaZakupow'><tr><td>Nazwa Produktu</td><td>Miara</td><td>Ilość</td></tr>";

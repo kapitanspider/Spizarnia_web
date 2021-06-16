@@ -1,7 +1,7 @@
 function getProducts() {
   
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://127.0.0.1:8080/products/all');
+	xhr.open('GET','http://127.0.0.1:8080//products/all-sorted-category-product');
 	xhr.responseType = 'json';
 	xhr.onload = () =>{
 		var lista="";
