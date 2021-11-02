@@ -1,0 +1,25 @@
+Dokumentacja wersji Web
+
+1.produkty.js
+	getProducts() – wysyła zapytanie do api i odbiera listę produktów następnie wyświetla ja na stronie
+	productEditor(id) – uruchamia tryb edytowania produktu o podanym id
+	dodajAtrybut(id) – dodaje atrybut pobrany z inputu do produktu o podanym id
+	zmienilosc(id) – zmienia ilość produktu o podanym id na wartość z inputu.
+2.dodawanie_miary.js
+	addCategory () - dodaje nową kategorię której nazwa jest pobrana z inputu
+	getCategories () - wysyła zapytanie do api i odbiera listę kategorii oraz ją wyświetla na stronie 
+3.dodawanie_kategori.js
+	addMiara() - dodaje nową miarę której nazwa jest pobrana z inputu
+	getMiary() - wysyła zapytanie do api i odbiera listę miar oraz ją wyświetla na stronie 
+
+3.dodawanie_produktu.js
+	addProduct() - dodaje produkt do listy produktów
+	fetchOptions() - funkcja pobiera miary i kategorie produktów oraz dodaje je jako opcje do wyboru przy wstawianiu produktu  
+4.lista zakupow.js
+	getlista() - pobiera i wyświetla listę zakupów
+	addToList() - uruchamia tryb dodania produktu do list zakupów
+	addToListDB() - dodaje produkt do list zakupów
+5.tryb_zakupowy.js
+	trybZakupowy() – uruchamia tryb zakupowy i wyświetla listę zakupów
+	buy(id) – wysyła zapytanie do api o zakupie określonej ilości produktu o danym id 
+
