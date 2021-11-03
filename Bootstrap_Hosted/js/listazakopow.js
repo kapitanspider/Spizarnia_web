@@ -5,6 +5,7 @@ function getlista() {
 	xhr.onload = () =>{
 		var lista="<table class='table table-striped table-bordered'><tr><th scope='col'>Nazwa Produktu</th><th scope='col'>Miara</th><th scope='col'>Ilość</th></tr>";
 		var kategoria="";
+		console.log(xhr.response);
 		for(var i=0;i<xhr.response.length;i++)
 		{
 			if (kategoria!=xhr.response[i].product.categoryShopping.name)
@@ -13,7 +14,7 @@ function getlista() {
 				lista+="<tr><th colspan='3'><h2 class='display-4 text-center'>"+kategoria+"</h2></th></tr>"
 				
 			}
-			lista+="<tr><td>"+xhr.response[i].product.productName+"</td><td>"+xhr.response[i].product.measure.name+"</td><td>"+xhr.response[i].quantityToBuy+"</td></tr>";
+			lista+="<tr><td>"+xhr.response[i].product.productName+"</td><td>"+xhr.response[i].product.measure.name+"</td><td>"+xhr.response[i].quantityToBuy+"<button class='btn btn-primary float-right' onclick=removeFromList('"+xhr.response[i].id+"')>Usuń z listy</button></td></tr>";
 		}
 		lista+="</table>";
 		lista+="<div class='d-flex justify-content-center'><button class='btn btn-primary' onclick='addToList()'>Dodaj produkt do listy zakupów</button></div>"
@@ -48,6 +49,7 @@ function addToList(){
 	xhr.send();	
 	
 }
+
 function addToListDB(){
 	var obiekt = {
 		quantityToBuy: (document.getElementById("ilosc").value *1),
@@ -63,7 +65,18 @@ function addToListDB(){
 	xhr.onload = () =>{
 	getlista();
 	}
-	console.log(JSON.stringify(obiekt));
 	xhr.send(JSON.stringify(obiekt));	
 	
+}
+
+function removeFromList(id){
+	const xhr = new XMLHttpRequest();
+	xhr.open('DELETE','http://46.41.141.26:8080/shopping-list/'+id);
+	xhr.responseType = 'json';
+	xhr.setRequestHeader('Content-Type','application/json');
+	xhr.onload = () =>{
+			console.log(xhr.response);
+	getlista();
+	}
+	xhr.send();	
 }

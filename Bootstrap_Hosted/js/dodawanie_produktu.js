@@ -24,7 +24,7 @@ function addProduct() {
 		xhr.onload = () =>{
 			document.getElementById("content").innerHTML += "<h3 class='display-4 text-center'>"+"Dodano produkt "+product.productName+"</h3>";
 		};
-	console.log(JSON.stringify(product));
+	//console.log(JSON.stringify(product));
 	xhr.send(JSON.stringify(product));
 	}
 	else{
