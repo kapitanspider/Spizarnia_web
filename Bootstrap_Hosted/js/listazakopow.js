@@ -1,11 +1,11 @@
 function getlista() {
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://46.41.141.26:8080/shopping-list/all-sorted-category-shopping');
+	xhr.open('GET','http://localhost:8080/shopping-list/all-sorted-category-shopping?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr.responseType = 'json';
 	xhr.onload = () =>{
 		var lista="<table class='table table-striped table-bordered'><tr><th scope='col'>Nazwa Produktu</th><th scope='col'>Miara</th><th scope='col'>Ilość</th></tr>";
 		var kategoria="";
-		console.log(xhr.response);
+		//console.log(xhr.response);
 		for(var i=0;i<xhr.response.length;i++)
 		{
 			if (kategoria!=xhr.response[i].product.categoryShopping.name)
@@ -34,7 +34,7 @@ function addToList(){
 	document.getElementById("content").innerHTML = lista;
 	
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://46.41.141.26:8080/products/all');
+	xhr.open('GET','http://localhost:8080/products/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr.responseType = 'json';
 	xhr.onload = () =>{
 		var lista="";
@@ -59,7 +59,7 @@ function addToListDB(){
 		}
 	}
 	const xhr = new XMLHttpRequest();
-	xhr.open('POST','http://46.41.141.26:8080/shopping-list');
+	xhr.open('POST','http://localhost:8080/shopping-list');
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type','application/json');
 	xhr.onload = () =>{
@@ -71,11 +71,12 @@ function addToListDB(){
 
 function removeFromList(id){
 	const xhr = new XMLHttpRequest();
-	xhr.open('DELETE','http://46.41.141.26:8080/shopping-list/'+id);
+	xhr.open('DELETE','http://localhost:8080/shopping-list/'+id);
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type','application/json');
 	xhr.onload = () =>{
-			console.log(xhr.response);
+			//console.log(xhr.response);
+	getlista();
 	getlista();
 	}
 	xhr.send();	

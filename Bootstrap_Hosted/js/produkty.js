@@ -1,7 +1,7 @@
 function getProducts() {
   
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://46.41.141.26:8080//products/all-sorted-category-product');
+	xhr.open('GET','http://localhost:8080//products/all-sorted-category-product?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
@@ -25,7 +25,7 @@ function productEditor(id)
 	document.getElementById("content").innerHTML = "";
 	document.getElementById("content").innerHTML += "<h3 class='display-4 text-center' id='nag'>Produkt: </h3>";
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://46.41.141.26:8080/products?id='+id);
+	xhr.open('GET','http://localhost:8080/products?id='+id);
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
@@ -56,7 +56,7 @@ function productEditor(id)
 function productMod(id)
 {
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://46.41.141.26:8080/products?id='+id);
+	xhr.open('GET','http://localhost:8080/products?id='+id);
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
@@ -114,16 +114,21 @@ function uppProduct(attributeList,ID)
 		},
 		productName: document.getElementById("nazwaProduktu").value,
 		quantity: (document.getElementById("ilosc").value * 1),
-		id: ID
+		id: ID,
+		group:{
+			code: localStorage.getItem("ActiveGroupCode"),
+			name: localStorage.getItem("ActiveGroupName")
+		}
 	}
-	console.log(produkt);
+	//console.log(produkt);
 	
 	const xhr = new XMLHttpRequest();
-	xhr.open('PUT','http://46.41.141.26:8080//products/update');
+	xhr.open('PUT','http://localhost:8080//products/update');
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
-		console.log(xhr.response);
+		//console.log(xhr.response);
+		getProducts();
 	}
 	xhr.send(JSON.stringify(produkt));
 }
@@ -133,11 +138,11 @@ function removeAtt(parse)
 	var product_id=tab[1];
 	var id=tab[0];
 	const xhr = new XMLHttpRequest();
-	xhr.open('DELETE','http://46.41.141.26:8080/products/attribute/'+product_id+"?attributeId="+id);
+	xhr.open('DELETE','http://localhost:8080/products/attribute/'+product_id+"?attributeId="+id);
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
-		console.log(xhr.response);
+		//console.log(xhr.response);
 		 productEditor(product_id);
 	}
 	xhr.send();
@@ -145,7 +150,7 @@ function removeAtt(parse)
 
 function fetchOptions(categoryProduct,categoryShopping,measure){
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://46.41.141.26:8080/category-product/all');
+	xhr.open('GET','http://localhost:8080/category-product/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
@@ -166,7 +171,7 @@ function fetchOptions(categoryProduct,categoryShopping,measure){
 	}
 	xhr.send();
 	const xhr2 = new XMLHttpRequest();
-	xhr2.open('GET','http://46.41.141.26:8080/category-shopping/all');
+	xhr2.open('GET','http://localhost:8080/category-shopping/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr2.responseType = 'json';
 	xhr2.setRequestHeader('Content-Type', 'application/json');
 	xhr2.onload = () =>{
@@ -186,7 +191,7 @@ function fetchOptions(categoryProduct,categoryShopping,measure){
 	}
 	xhr2.send();
 	const xhr3 = new XMLHttpRequest();
-	xhr3.open('GET','http://46.41.141.26:8080/measures/all');
+	xhr3.open('GET','http://localhost:8080/measures/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr3.responseType = 'json';
 	xhr3.setRequestHeader('Content-Type', 'application/json');
 	xhr3.onload = () =>{
@@ -211,7 +216,7 @@ function dodajAtrybut(id){
 	var newAtt = document.getElementById("nazwaAtrybutu").value
 	if (newAtt.length>0){
 	const xhr = new XMLHttpRequest();
-	xhr.open('PUT','http://46.41.141.26:8080/products/attribute/'+id+"?attributeName="+newAtt);
+	xhr.open('PUT','http://localhost:8080/products/attribute/'+id+"?attributeName="+newAtt);
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
@@ -227,7 +232,7 @@ function dodajAtrybut(id){
 function zmienilosc(id){
 	quantity = (document.getElementById(id).value*1)
 	const xhr = new XMLHttpRequest();
-	xhr.open('PUT','http://46.41.141.26:8080/products/quantity/'+id+"?quantity="+quantity);
+	xhr.open('PUT','http://localhost:8080/products/quantity/'+id+"?quantity="+quantity);
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
@@ -236,5 +241,3 @@ function zmienilosc(id){
 }
 
 getProducts();
-
-
