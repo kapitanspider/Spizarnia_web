@@ -13,18 +13,22 @@ function addProduct() {
 			id: document.getElementById("miara").value
 		},
 		autoPurchase: document.getElementById("autoZakup").checked,
-		autoPurchaseCount: (document.getElementById("progAutoZakupu").value * 1)
+		autoPurchaseCount: (document.getElementById("progAutoZakupu").value * 1),
+		group:{
+			code: localStorage.getItem("ActiveGroupCode"),
+			name: localStorage.getItem("ActiveGroupName")
+		}
 	}
 	const xhr = new XMLHttpRequest();
 	if(product.productName.length>0)
 	{
-		xhr.open('POST','http://127.0.0.1:8080/products');
+		xhr.open('POST','http://localhost:8080/products');
 		xhr.responseType = 'json';
 		xhr.setRequestHeader('Content-Type','application/json');
 		xhr.onload = () =>{
-			document.getElementById("content").innerHTML += "<h3>"+"Dodano produkt "+product.productName+"</h3>";
+			document.getElementById("content").innerHTML += "<h3 class='display-4 text-center'>"+"Dodano produkt "+product.productName+"</h3>";
 		};
-	console.log(JSON.stringify(product));
+	//console.log(JSON.stringify(product));
 	xhr.send(JSON.stringify(product));
 	}
 	else{
@@ -34,7 +38,7 @@ function addProduct() {
 
 function fetchOptions(){
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://127.0.0.1:8080/category-product/all');
+	xhr.open('GET','http://localhost:8080/category-product/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr.responseType = 'json';
 	xhr.onload = () =>{
 		var lista="";
@@ -46,7 +50,7 @@ function fetchOptions(){
 	}
 	xhr.send();
 	const xhr2 = new XMLHttpRequest();
-	xhr2.open('GET','http://127.0.0.1:8080/category-shopping/all');
+	xhr2.open('GET','http://localhost:8080/category-shopping/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr2.responseType = 'json';
 	xhr2.onload = () =>{
 		var lista="";
@@ -58,7 +62,7 @@ function fetchOptions(){
 	}
 	xhr2.send();
 	const xhr3 = new XMLHttpRequest();
-	xhr3.open('GET','http://127.0.0.1:8080/measures/all');
+	xhr3.open('GET','http://localhost:8080/measures/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr3.responseType = 'json';
 	xhr3.onload = () =>{
 		var lista="";
