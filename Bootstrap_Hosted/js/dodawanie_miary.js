@@ -10,7 +10,7 @@ function addMiara() {
 	if (miara.name.length>0)
 	{
 	const xhr = new XMLHttpRequest();
-	xhr.open('POST','http://localhost:8080/measures');
+	xhr.open('POST','http://46.41.141.26:8080/measures');
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type','application/json');
 	xhr.onload = () =>{
@@ -26,7 +26,7 @@ function addMiara() {
 function getMiary(){
 	var temp = document.getElementById("inputs").innerHTML;
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://localhost:8080/measures/all?code='+localStorage.getItem("ActiveGroupCode"));
+	xhr.open('GET','http://46.41.141.26:8080/measures/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr.responseType = 'json';
 	xhr.onload = () =>{
 	var lista = "<h2 class='display-4 text-center'>Istniejące Miary</h2><table class='table table-striped table-bordered text-center'>";
