@@ -14,7 +14,7 @@ function getProducts() {
 				kategoria=xhr.response[i].categoryProduct.name;
 				lista+="<tr><th colspan='3'><h2 class='display-4 text-center'>"+kategoria+"</h2></th></tr>"
 			}
-			lista+="<tr><td>"+xhr.response[i].productName+"</td><td>"+xhr.response[i].quantity+"</td><td><button class='btn btn-primary' onclick=productMod('"+xhr.response[i].id+"')>Edytuj</button> <button class='btn btn-primary' onclick=productEditor('"+xhr.response[i].id+"')>Ilość i atrybuty</button> <button class='btn btn-primary' onclick=expDates('"+xhr.response[i].id+"')>Daty Warzności</button></td></tr>";
+			lista+="<tr><td>"+xhr.response[i].productName+"</td><td>"+xhr.response[i].quantity+"</td><td><button class='btn btn-primary' onclick=productMod('"+xhr.response[i].id+"')>Edytuj</button> <button class='btn btn-primary' onclick=productEditor('"+xhr.response[i].id+"')>Ilość i atrybuty</button> <button class='btn btn-primary' onclick=expDates('"+xhr.response[i].id+"')>Daty Warzności</button> <button class='btn btn-primary' onclick=barCodes('"+xhr.response[i].id+"')>Kody kreskowe</button></td></tr>";
 		}
 		document.getElementById("content").innerHTML = lista;
 	}
@@ -247,7 +247,6 @@ function expDates(id){
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
-		console.log(xhr.response);
 		var lista=' ';
 		var today = new Date() 
 		if(xhr.response.expirationDateList.length>0)
@@ -257,7 +256,6 @@ function expDates(id){
 			{
 				temp=xhr.response.expirationDateList[i].date.split('-');
 				var expDate=new Date(temp[0],temp[1]-1,temp[2],0,0,0,0);
-				console.log(xhr.response.expirationDateList[i].remainderDays);
 				if(((expDate-today)/86400000)>xhr.response.expirationDateList[i].remainderDays)
 				{
 				lista+="<tr><td class='text-success'>"+xhr.response.expirationDateList[i].date+"</td><td>"+xhr.response.expirationDateList[i].note+"</td>";
@@ -319,5 +317,44 @@ function removeExpDate(string){
 	xhr.send();
 }
 
+function barCodes(id){
+	const xhr = new XMLHttpRequest();
+	xhr.open('GET','http://46.41.141.26:8080/products?id='+id);
+	xhr.responseType = 'json';
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.onload = () =>{
+		console.log(xhr.response);
+		var lista=' ';
+		var today = new Date() 
+		if(xhr.response.barcodeList.length>0)
+		{
+			lista+="<h3 class='display-4 text-center'>Kody kreskowe:</h3><table class='table table-striped table-bordered text-center' id='listaBarCodow'>";
+			for(i=0;i<xhr.response.barcodeList.length;i++)
+			{
+				
+				lista+="<tr><td class='text-danger'>"+xhr.response.barcodeList[i].barcode+"</td><td>"+xhr.response.barcodeList[i].note+"</td>";
+				lista+="<td><button class='btn btn-primary float-right' onclick=removeBarcode('"+id+','+xhr.response.barcodeList[i].id+"')>usuń</button></td></tr>"
+			}
+			lista+="</table>";
+		}
+		document.getElementById("content").innerHTML = lista;
+	}
+	xhr.send()
+}
+
+function removeBarcode(string){
+	string=string.split(",");
+	var id=string[0];
+	var barcode=string[1];
+	const xhr = new XMLHttpRequest();
+	xhr.open('DELETE','http://46.41.141.26:8080/products/barcode/'+id+'?barcodeId='+barcode);
+		xhr.responseType = 'json';
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.onload = () =>{
+			barCodes(id);
+		};
+	//console.log(JSON.stringify(product));
+	xhr.send();
+}
 
 getProducts();
