@@ -389,10 +389,7 @@ function changeFromZero(){
 				kategoria=xhr.response[i].categoryProduct.name;
 				lista+="<tr><th colspan='3'><h2 class='display-5 text-center'>"+kategoria+"</h2></th></tr>"
 			}
-			if(xhr.response[i].quantity==0)
-			{
 			lista+="<tr><td>"+xhr.response[i].productName+"</td><td><input class='text-center form-control' type='number' id='"+xhr.response[i].id+"' value='"+xhr.response[i].quantity+"'></td><td><button class='btn btn-primary' onclick=zmienilosc2('"+xhr.response[i].id+"')>Dodaj</button>";
-			}
 		}
 		lista+="</table><div class='d-flex justify-content-center'><a href='dodawanie_produktu.html' class='btn btn-primary'>+ Utwórz nowy produkt</a>&nbsp<button class='btn btn-primary' onclick=changeFromZero()>Dodaj istniejący produkt</button></div>";
 		lista+="</br><div class='d-flex justify-content-center'><a href='produkty.html' class='btn btn-primary'>Wróć</a></div>";
