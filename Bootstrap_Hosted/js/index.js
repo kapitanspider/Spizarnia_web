@@ -134,7 +134,7 @@ function setGroups()
 	for(var i = 0; i < groups.length ;i++)
 	{
 		if(localStorage.getItem("ActiveGroupCode")==groups[i]){
-		lista+="<tr class='text-primary'><td>"+groups[i]+"</td><td>"+names[i]+"<button class='btn btn-primary float-right' onclick='showQR(`"+groups[i]+"`)'>QR</button><button class='btn btn-primary float-right' onclick='removeGroup("+i+")'>Usuń</button></td></tr>"
+		lista+="<tr class='text-primary'><td>"+groups[i]+"</td><td>"+names[i]+"<br><button class='btn btn-primary float-right' onclick='showQR(`"+groups[i]+"`)'>QR</button><button class='btn btn-primary float-right' onclick='removeGroup("+i+")'>Usuń</button></td></tr>"
 		}
 		else{
 		lista+="<tr><td>"+groups[i]+"</td><td>"+names[i]+"<button class='btn btn-primary float-right' onclick='showQR(`"+groups[i]+"`)'>QR</button><button class='btn btn-primary float-right' onclick='removeGroup("+i+")'>Usuń</button><button class='btn btn-primary float-right' onclick='setActive(`"+groups[i]+","+names[i]+"`)'>Aktywuj</button></td></tr>"

@@ -4,7 +4,7 @@
 	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Moja Spiżarnia</title>
+	<title>Domowa Spiżarnia</title>
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -35,25 +35,22 @@
 	  <li class="nav-item ">
         <a class="nav-link" href="dodawanie_miary.html">Miary</a>
       </li>
-	<li class="nav-item active">
-		<a class="nav-link" href="dodawanie_produktu.html">Dodawanie produktu</a>
-</li>
   </div>
 </nav>
 <div class="container-fluid" id="content">
-<h3 class='display-4 text-center'>Nazwa Produktu:</h3>
+<h3 class='display-5 text-center'>Nazwa Produktu:</h3>
 <input class='text-center form-control' type="text" id="nazwaProduktu">
-<h3 class='display-4 text-center'>Ilość:</h3>
+<h3 class='display-5 text-center'>Ilość:</h3>
 <input class='text-center form-control' type="number" id="ilosc" value="0">
-<h3 class='display-4 text-center'>Kategorie Produktów:</h3>
+<h3 class='display-5 text-center'>Kategorie Produktów:</h3>
 <select  class='text-center form-control' type="text" id="kategorieProdukty"></select>
-<h3 class='display-4 text-center'>Kategorie Zakupy:</h3>
+<h3 class='display-5 text-center'>Kategorie Zakupy:</h3>
 <select  class='text-center form-control' type="text" id="kategorieZakupy"></select>
-<h3 class='display-4 text-center'>Miara:</h3>
+<h3 class='display-5 text-center'>Miara:</h3>
 <select  class='text-center form-control' type="text" id="miara"></select>
-<h3 class='display-4 text-center'>AutoZakup:</h3>
+<h3 class='display-5 text-center'>AutoZakup:</h3>
 <div class='d-flex justify-content-center'><input class="form-check-input position-static" type="checkbox" id="autoZakup"></div>
-<h3 class='display-4 text-center'>Próg Auto Zakupu:</h3>
+<h3 class='display-5 text-center'>Próg Auto Zakupu:</h3>
 <input class='text-center form-control' type="number" id="progAutoZakupu" value="0">
 </br>
 <div class='d-flex justify-content-center'><button class="btn btn-primary" onclick="addProduct()">Dodaj produkt</button></div>

@@ -26,7 +26,8 @@ function addProduct() {
 		xhr.responseType = 'json';
 		xhr.setRequestHeader('Content-Type','application/json');
 		xhr.onload = () =>{
-			document.getElementById("content").innerHTML += "<h3 class='display-4 text-center'>"+"Dodano produkt "+product.productName+"</h3>";
+			//document.getElementById("content").innerHTML += "<h3 class='display-5 text-center'>"+"Dodano produkt "+product.productName+"</h3>";
+			location.replace("produkty.html");
 		};
 	//console.log(JSON.stringify(product));
 	xhr.send(JSON.stringify(product));
