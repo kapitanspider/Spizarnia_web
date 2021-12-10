@@ -11,13 +11,13 @@ function getlista() {
 			if (kategoria!=xhr.response[i].product.categoryShopping.name)
 			{
 				kategoria=xhr.response[i].product.categoryShopping.name;
-				lista+="<tr><th colspan='3'><h2 class='display-5 text-center'>"+kategoria+"</h2></th></tr>"
+				lista+="<tr><th colspan='4'><h2 class='text-center'>"+kategoria+"</h2></th></tr>"
 				
 			}
 			lista+="<tr><td>"+xhr.response[i].product.productName+"</td><td>"+xhr.response[i].product.measure.name+"</td><td><input class='text-center form-control' type='number' id='"+xhr.response[i].id+"' value='"+xhr.response[i].quantityToBuy+"'></td><td><button class='btn btn-primary float-right' onclick=removeFromList('"+xhr.response[i].id+"')>Usuń z listy</button><button class='btn btn-primary float-right' onclick=updateQuantity('"+xhr.response[i].id+"')>Zmien Ilość</button></td></tr>";
 		}
 		lista+="</table>";
-		lista+="<div class='d-flex justify-content-center'><button class='btn btn-primary' onclick='addToList()'>Dodaj produkt do listy zakupów</button></div>"
+		lista+="<div class='d-flex justify-content-center'><button class='btn btn-primary' onclick='addToList()'>Dodaj produkt do listy zakupów</button>&nbsp;<a href='dodawanie_produktu.html' class='btn btn-primary'>+ Utwórz nowy produkt</a></div>"
 		document.getElementById("content").innerHTML = lista;
 	}
 	xhr.send();

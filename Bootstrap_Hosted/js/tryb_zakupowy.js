@@ -12,7 +12,7 @@ function trybZakupowy() {
 			if (kategoria!=xhr.response[i].product.categoryShopping.name)
 			{
 				kategoria=xhr.response[i].product.categoryShopping.name;
-				lista+="<tr><th colspan='6'><h2 class='display-5 text-center'>"+kategoria+"</h2></th></tr>"
+				lista+="<tr><th colspan='7'><h2 class='text-center'>"+kategoria+"</h2></th></tr>"
 				
 			}
 			lista+="<tr><td>"+xhr.response[i].product.productName+"</td><td><button class='btn btn-primary' onclick=showAttribs('"+xhr.response[i].product.id+"')>Atrybuty</button> <button class='btn btn-primary' onclick=barCodes('"+xhr.response[i].product.id+"')>Kody kreskowe</button></td><td>"+xhr.response[i].product.categoryProduct.name+"</td><td>"+xhr.response[i].product.measure.name+"</td><td>"+xhr.response[i].product.quantity+"</td><td><input class='text-center form-control' type='number' id='"+xhr.response[i].id+"' value='"+xhr.response[i].quantityToBuy+"'></td><td><button class='btn btn-primary' onclick=buy('"+xhr.response[i].id+"')>Kup</button></td></tr>";
@@ -40,14 +40,14 @@ function buy(id){
 
 function showAttribs(id)
 {
-	document.getElementById("content").innerHTML = "<h3 class='display-5 text-center' id='nag'>Produkt: </h3>"
+	document.getElementById("content").innerHTML = "<h3 class='text-center' id='nag'>Produkt: </h3>"
 	const xhr = new XMLHttpRequest();
 	xhr.open('GET','http://46.41.141.26:8080/products?id='+id);
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
 		document.getElementById("nag").innerHTML += xhr.response.productName;
-		var listaAtrybutów="<h3 class='display-5 text-center'>Atrybuty:</h3>";
+		var listaAtrybutów="<h3 class='text-center'>Atrybuty:</h3>";
 		if (xhr.response.attributeList.length>0){
 			listaAtrybutów+="<table class='table table-striped table-bordered text-center' id='tabelaAtrybotow'>"
 			for(var i=0;i<xhr.response.attributeList.length;i++)
@@ -109,7 +109,7 @@ function barCodes(id){
 		var today = new Date() 
 		if(xhr.response.barcodeList.length>0)
 		{
-			lista+="<h3 class='display-5 text-center'>Kody kreskowe:</h3><table class='table table-striped table-bordered text-center' id='listaBarCodow'>";
+			lista+="<h3 class='text-center'>Kody kreskowe:</h3><table class='table table-striped table-bordered text-center' id='listaBarCodow'>";
 			for(i=0;i<xhr.response.barcodeList.length;i++)
 			{
 				
@@ -118,7 +118,7 @@ function barCodes(id){
 			}
 			lista+="</table>";
 		}
-		lista+="</br><div class='d-flex justify-content-center'><a href='produkty.html' class='btn btn-primary'>Wróć</a></div>";
+		lista+="</br><div class='d-flex justify-content-center'><a href='tryb_zakupowy.html' class='btn btn-primary'>Wróć</a></div>";
 		document.getElementById("content").innerHTML = lista;
 	}
 	xhr.send()

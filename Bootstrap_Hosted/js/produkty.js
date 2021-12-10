@@ -1,7 +1,7 @@
 function getProducts() {
   
 	const xhr = new XMLHttpRequest();
-	xhr.open('GET','http://46.41.141.26:8080//products/all-no-zero?code='+localStorage.getItem("ActiveGroupCode"));
+	xhr.open('GET','http://46.41.141.26:8080//products/all-sorted-category-product?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
@@ -12,11 +12,15 @@ function getProducts() {
 			if(kategoria!=xhr.response[i].categoryProduct.name)
 			{
 				kategoria=xhr.response[i].categoryProduct.name;
-				lista+="<tr><th colspan='3'><h2 class='display-5 text-center'>"+kategoria+"</h2></th></tr>"
+				lista+="<tr><th colspan='3'><h2 class='text-center'>"+kategoria+"</h2></th></tr>"
 			}
-			lista+="<tr><td>"+xhr.response[i].productName+"</td><td>"+xhr.response[i].quantity+"</td><td><button class='btn btn-primary' onclick=productMod('"+xhr.response[i].id+"')>Edytuj</button> <button class='btn btn-primary' onclick=productEditor('"+xhr.response[i].id+"')>Ilość i atrybuty</button> <button class='btn btn-primary' onclick=expDates('"+xhr.response[i].id+"')>Daty Warzności</button> <button class='btn btn-primary' onclick=barCodes('"+xhr.response[i].id+"')>Kody kreskowe</button></td></tr>";
+			if(xhr.response[i].quantity>0){
+			lista+="<tr><td>"+xhr.response[i].productName+"</td><td>"+xhr.response[i].quantity+"</td><td><div class='float-right'><button class='btn btn-primary' onclick=productMod('"+xhr.response[i].id+"')>Edytuj</button> <button class='btn btn-primary' onclick=productEditor('"+xhr.response[i].id+"')>Ilość i atrybuty</button> <button class='btn btn-primary' onclick=expDates('"+xhr.response[i].id+"')>Daty Warzności</button> <button class='btn btn-primary' onclick=barCodes('"+xhr.response[i].id+"')>Kody kreskowe</button></div></td></tr>";
+			}
 		}
-		lista+="</table><div class='d-flex justify-content-center'><a href='dodawanie_produktu.html' class='btn btn-primary'>+ Utwórz nowy produkt</a>&nbsp<button class='btn btn-primary' onclick=changeFromZero()>Dodaj istniejący produkt</button></div>";
+		lista+="</table><div class='d-flex justify-content-center'><button class='btn btn-primary' onclick=changeFromZero()>Dodaj produkt</button></div>";
+		//Jeśli tak zostanie to usunąc changeFromZero()
+		//lista+="</table><div class='d-flex justify-content-center'><a href='dodawanie_produktu.html' class='btn btn-primary'>+ Utwórz nowy produkt</a></div>";
 		document.getElementById("content").innerHTML = lista;
 	}
 	xhr.send();
@@ -25,7 +29,7 @@ function getProducts() {
 function productEditor(id)
 {
 	document.getElementById("content").innerHTML = "";
-	document.getElementById("content").innerHTML += "<h3 class='display-5 text-center' id='nag'>Produkt: </h3>";
+	document.getElementById("content").innerHTML += "<h3 class='text-center' id='nag'>Produkt: </h3>";
 	const xhr = new XMLHttpRequest();
 	xhr.open('GET','http://46.41.141.26:8080/products?id='+id);
 	xhr.responseType = 'json';
@@ -34,8 +38,8 @@ function productEditor(id)
 		var lista = "";
 		lista+=xhr.response.productName;
 	document.getElementById("nag").innerHTML += lista;
-	document.getElementById("content").innerHTML +="<h4 class='display-5 text-center'>Ilość:</h4><div class='d-flex justify-content-center'><input class='text-center form-control' type='number' value='"+xhr.response.quantity+"' id='"+id+"'></div><br><div class='d-flex justify-content-center'><button class='btn btn-primary' onclick="+'zmienilosc("'+id+'")'+">Zmień ilość</button></div>";
-	var listaAtrybutów="<h3 class='display-5 text-center'>Atrybuty:</h3>";
+	document.getElementById("content").innerHTML +="<h4 class='text-center'>Ilość:</h4><div class='d-flex justify-content-center'><input class='text-center form-control' type='number' value='"+xhr.response.quantity+"' id='"+id+"'></div><br><div class='d-flex justify-content-center'><button class='btn btn-primary' onclick="+'zmienilosc("'+id+'")'+">Zmień ilość</button></div>";
+	var listaAtrybutów="<h3 class='text-center'>Atrybuty:</h3>";
 		if (xhr.response.attributeList.length>0){
 			listaAtrybutów+="<table class='table table-striped table-bordered text-center' id='tabelaAtrybotow'>"
 			for(var i=0;i<xhr.response.attributeList.length;i++)
@@ -63,17 +67,17 @@ function productMod(id)
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
 		var lista = "";
-		lista += "<h3 class='display-5 text-center'>Nazwa Produktu:</h3>";
+		lista += "<h3 class='text-center'>Nazwa Produktu:</h3>";
 		lista += "<input class='text-center form-control' type='text' id='nazwaProduktu' value='"+xhr.response.productName+"'>";
-		lista += "<h3 class='display-5 text-center'>Ilość:</h3>";
+		lista += "<h3 class='text-center'>Ilość:</h3>";
 		lista += "<input class='text-center form-control' type='number' id='ilosc' value='"+xhr.response.quantity+"'>";
-		lista += "<h3 class='display-5 text-center'>Kategorie Produktów:</h3>";
+		lista += "<h3 class='text-center'>Kategorie Produktów:</h3>";
 		lista += "<select  class='text-center form-control' type='text' id='kategorieProdukty'></select>";
-		lista += "<h3 class='display-5 text-center'>Kategorie Zakupy:</h3>";
+		lista += "<h3 class='text-center'>Kategorie Zakupy:</h3>";
 		lista += "<select  class='text-center form-control' type='text' id='kategorieZakupy'></select>";
-		lista += "<h3 class='display-5 text-center'>Miara:</h3>";
+		lista += "<h3 class='text-center'>Miara:</h3>";
 		lista += "<select  class='text-center form-control' type='text' id='miara'></select>";
-		lista += "<h3 class='display-5 text-center'>AutoZakup:</h3>";
+		lista += "<h3 class='text-center'>AutoZakup:</h3>";
 		if(xhr.response.autoPurchase)
 		{
 		lista += "<div class='d-flex justify-content-center'><input class='form-check-input position-static' type='checkbox' id='autoZakup' checked></div>";
@@ -82,7 +86,7 @@ function productMod(id)
 		{
 		lista += "<div class='d-flex justify-content-center'><input class='form-check-input position-static' type='checkbox' id='autoZakup'></div>";
 		}
-		lista += "<h3 class='display-5 text-center'>Próg Auto Zakupu:</h3>";
+		lista += "<h3 class='text-center'>Próg Auto Zakupu:</h3>";
 		lista += "<input class='text-center form-control' type='number' id='progAutoZakupu' value='"+xhr.response.autoPurchaseCount+"'>";
 		lista += "</br>";
 		lista += "<div class='d-flex justify-content-center'><button class='btn btn-primary' id='updatebutton'>Zapisz</button></div>";
@@ -266,7 +270,7 @@ function expDates(id){
 		var today = new Date() 
 		if(xhr.response.expirationDateList.length>0)
 		{
-			lista+="<h3 class='display-5 text-center'>Daty Warzności:</h3><table class='table table-striped table-bordered text-center' id='listaDatWaznosci'>";
+			lista+="<h3 class='text-center'>Daty Warzności:</h3><table class='table table-striped table-bordered text-center' id='listaDatWaznosci'>";
 			for(i=0;i<xhr.response.expirationDateList.length;i++)
 			{
 				temp=xhr.response.expirationDateList[i].date.split('-');
@@ -283,12 +287,12 @@ function expDates(id){
 			}
 			lista+="</table>";
 		}
-		lista+="<h3 class='display-5 text-center'>Dodaj Datę warzności:</h3>";
-		lista+="<h3 class='display-5 text-center'>Data:</h3>";
+		lista+="<h3 class='text-center'>Dodaj Datę warzności:</h3>";
+		lista+="<h3 class='text-center'>Data:</h3>";
 		lista+="<div class='d-flex justify-content-center'><input type='date' id='dataWarznosci'></div>";
-		lista+="<h3 class='display-5 text-center'>Notatka:</h3>";
+		lista+="<h3 class='text-center'>Notatka:</h3>";
 		lista+="<div class='d-flex justify-content-center'><input type='text' id='notkaWarznosci'></div>";
-		lista+="<h3 class='display-5 text-center'>Ile dni przed końcem powiadamiać:</h3>";
+		lista+="<h3 class='text-center'>Ile dni przed końcem powiadamiać:</h3>";
 		lista+="<div class='d-flex justify-content-center'><input type='number' value='3' id='dniWarznosci'></div>";
 		lista+="<div class='d-flex justify-content-center'><button class='btn btn-primary' onclick=addExpDate('"+id+"')>Dodaj datę</button></div>";
 		lista+="</br><div class='d-flex justify-content-center'><a href='produkty.html' class='btn btn-primary'>Wróć</a></div>";
@@ -344,7 +348,7 @@ function barCodes(id){
 		var today = new Date() 
 		if(xhr.response.barcodeList.length>0)
 		{
-			lista+="<h3 class='display-5 text-center'>Kody kreskowe:</h3><table class='table table-striped table-bordered text-center' id='listaBarCodow'>";
+			lista+="<h3 class='text-center'>Kody kreskowe:</h3><table class='table table-striped table-bordered text-center' id='listaBarCodow'>";
 			for(i=0;i<xhr.response.barcodeList.length;i++)
 			{
 				
@@ -387,11 +391,11 @@ function changeFromZero(){
 			if(kategoria!=xhr.response[i].categoryProduct.name)
 			{
 				kategoria=xhr.response[i].categoryProduct.name;
-				lista+="<tr><th colspan='3'><h2 class='display-5 text-center'>"+kategoria+"</h2></th></tr>"
+				lista+="<tr><th colspan='3'><h2 class='text-center'>"+kategoria+"</h2></th></tr>"
 			}
 			lista+="<tr><td>"+xhr.response[i].productName+"</td><td><input class='text-center form-control' type='number' id='"+xhr.response[i].id+"' value='"+xhr.response[i].quantity+"'></td><td><button class='btn btn-primary' onclick=zmienilosc2('"+xhr.response[i].id+"')>Dodaj</button>";
 		}
-		lista+="</table><div class='d-flex justify-content-center'><a href='dodawanie_produktu.html' class='btn btn-primary'>+ Utwórz nowy produkt</a>&nbsp<button class='btn btn-primary' onclick=changeFromZero()>Dodaj istniejący produkt</button></div>";
+		lista+="</table><div class='d-flex justify-content-center'><a href='dodawanie_produktu.html' class='btn btn-primary'>+ Utwórz nowy produkt</a></div>";
 		lista+="</br><div class='d-flex justify-content-center'><a href='produkty.html' class='btn btn-primary'>Wróć</a></div>";
 		document.getElementById("content").innerHTML = lista;
 	}

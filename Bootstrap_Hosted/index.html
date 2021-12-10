@@ -6,10 +6,26 @@
 	<title>Domowa Spiżarnia</title>
 	 <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style type="text/css">
+        .xyz {
+            background-size: auto;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .btn-circle.btn-xl {
+            width: 250px;
+            height: 250px;
+            padding: 10px 16px;
+            border-radius: 50%;
+            font-size: x-large;
+            text-align: center;
+			margin: 5px;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
-  <a class="navbar-brand" href="#">Domowa Spiżarnia</a>
+  <a class="navbar-brand" href="index.html">Domowa Spiżarnia</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 	</button>
@@ -17,7 +33,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 	<li class="nav-item active">
-		<a class="nav-link" href="index.html">Grupy</a>
+		<a class="nav-link" href="grupy.html">Grupy</a>
     </li>
 	<li class="nav-item">
 		<a class="nav-link" href="produkty.html">Lista Produktów</a>
@@ -36,24 +52,16 @@
       </li>
   </div>
 </nav>
-<div class="container-fluid" id="content">
-<h3 class='display-5 text-center'>Twoje grupy:</h3>
-<div class="container-fluid" id="grupy">
-<table class='table table-striped table-bordered' id="tabelaGrup">
-</table>
-<h3 class='display-5 text-center'>Nazwa Nowej Grupy:</h3>
-<input class='text-center form-control' type="text" id="nazwaGrupy">
+<div class="container-fluid w-75 p-5" id="content">
+<h3 class="text-center">Witaj w aplikacji Domowa spiżarnia</h3>
 <br>
-<div class='d-flex justify-content-center'><button class="btn btn-primary" onclick="createGroup()">Utwórz nową grupę</button></div>
-<br>
-<h3 class='display-5 text-center'>Kod istniejącej grupy:</h3>
-<input class='text-center form-control' type="text" id="kodGrupy">
-<br>
-<div class='d-flex justify-content-center'><button class="btn btn-primary" onclick="addGroup()">Dodaj kod istniejącej grupy</button></div>
+<div class='d-flex justify-content-center'>
+<a href="grupy.html"><button type="button" class="btn btn-primary btn-circle btn-xl">Lista Grup</button></a>
+<a href="produkty.html"><button type="button" class="btn btn-primary btn-circle btn-xl">Lista Produktów</button></a>
+<a href="listazakopow.html"><button type="button" class="btn btn-primary btn-circle btn-xl">Lista Lista Zakupów</button></a>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
-<script src="js/index.js"></script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

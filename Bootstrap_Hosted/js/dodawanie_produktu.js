@@ -26,8 +26,10 @@ function addProduct() {
 		xhr.responseType = 'json';
 		xhr.setRequestHeader('Content-Type','application/json');
 		xhr.onload = () =>{
-			//document.getElementById("content").innerHTML += "<h3 class='display-5 text-center'>"+"Dodano produkt "+product.productName+"</h3>";
+			//document.getElementById("content").innerHTML += "<h3 class='text-center'>"+"Dodano produkt "+product.productName+"</h3>";
 			location.replace("produkty.html");
+			//setTimeout(function(){ window.history.back() }, 500);
+			//window.history.back();
 		};
 	//console.log(JSON.stringify(product));
 	xhr.send(JSON.stringify(product));

@@ -49,11 +49,16 @@ function getMiary(){
 	xhr.open('GET','http://46.41.141.26:8080/measures/all?code='+localStorage.getItem("ActiveGroupCode"));
 	xhr.responseType = 'json';
 	xhr.onload = () =>{
-	var lista = "<h2 class='display-5 text-center'>Istniejące Miary</h2><table class='table table-striped table-bordered text-center'>";
+	var lista = "<h2 class='text-center'>Istniejące Miary</h2><table class='table table-striped table-bordered text-center'>";
 	for(var i=0;i<xhr.response.length;i++)
 		{
+			if(xhr.response[i].name=="Inne"){
+			lista+="<tr><td>"+xhr.response[i].name+"</td><td>Miara domyślna</td></tr>";
 
+			}
+			else{
 			lista+="<tr><td>"+xhr.response[i].name+"</td><td><button class='btn btn-primary' onclick='removeMiara(`"+xhr.response[i].id+"`)'>Usuń</button></td></tr>";
+			}
 		}
 		lista+="</table>";
 	lista+="<div id='inputs'></div>"
