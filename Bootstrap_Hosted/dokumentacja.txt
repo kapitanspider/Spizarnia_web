@@ -2,14 +2,27 @@ Dokumentacja wersji Web
 
 1.produkty.js
 	getProducts() – wysyła zapytanie do api i odbiera listę produktów następnie wyświetla ja na stronie
-	productEditor(id) – uruchamia tryb edytowania produktu o podanym id
+	productEditor(id) – uruchamia tryb zmiany ilości i atrybutów produktu
 	dodajAtrybut(id) – dodaje atrybut pobrany z inputu do produktu o podanym id
+	removeAtt(id)- usuwa atrybut
 	zmienilosc(id) – zmienia ilość produktu o podanym id na wartość z inputu.
-2.dodawanie_miary.js
+	productMod(id) - uruchamia tryb edytowania produktu o podanym id
+	uppProduct(attributeList,ID) - aktualizuje produkt o podanym id w oparciu o dane z inputów
+	fetchOptions() - pobiera miary i kategorie produktów oraz dodaje je jako opcje do wyboru przy edytowaniu produktu
+	expDates(id) - wyświetla daty ważności dla danego produktu
+	addExpDate(id) - dodaje datę warzności
+	removeExpDate(id)- usuwa datę warzności
+	barCodes(id)- wyświetla kody kreskowe
+	removeBarcode(id) - usuwa kod kreskowy
+	changeFromZero()- wyświetla tylko produkty o stanie niezerowym
+2.dodawanie_kategorii.js
 	addCategory () - dodaje nową kategorię której nazwa jest pobrana z inputu
+	removeCatProduct(id) - usuwa kategorię produktu
+	removeCatShopping(id) - usuwa kategorię zakupową
 	getCategories () - wysyła zapytanie do api i odbiera listę kategorii oraz ją wyświetla na stronie 
-3.dodawanie_kategori.js
+3.dodawanie_miary.js
 	addMiara() - dodaje nową miarę której nazwa jest pobrana z inputu
+	removeMiara(id) - usuwa miarę
 	getMiary() - wysyła zapytanie do api i odbiera listę miar oraz ją wyświetla na stronie 
 
 3.dodawanie_produktu.js
@@ -19,7 +32,25 @@ Dokumentacja wersji Web
 	getlista() - pobiera i wyświetla listę zakupów
 	addToList() - uruchamia tryb dodania produktu do list zakupów
 	addToListDB() - dodaje produkt do list zakupów
+	updateQuantity(id) - zmienia ilość na liście
+	removeFromList(id) - usuwa z listy
 5.tryb_zakupowy.js
 	trybZakupowy() – uruchamia tryb zakupowy i wyświetla listę zakupów
 	buy(id) – wysyła zapytanie do api o zakupie określonej ilości produktu o danym id 
-
+	showAttribs(id) - wyświetla atrybuty produktu
+	dodajAtrybut(id) – dodaje atrybut pobrany z inputu do produktu o podanym id
+	removeAtt(id)- usuwa atrybut
+	barCodes(id)- wyświetla kody kreskowe
+	removeBarcode(id) - usuwa kod kreskowy
+6.grupy.js
+	createGroup()- tworzy grupę 
+	addGroup() - dołącza do istniejącej grupy po kodzie
+	displayGroupCreator() - wyświetla panel tworzenia grupy
+	displayGroupAdder() - wyświetla panel dołączania do grupy
+	removeGroup(i) - usuwa grupę z urządzenia
+	setActive(code)- ustawia grupę jako aktywną
+	showQR(code)- wyświetla kod qr grupy
+	refresh()- odświerza stronę
+	setGroups()- wyświetla listę grup
+7.facecheck.js
+	sprawdza czy jest ustawiona aktywna grupa, jeśli nie to przekierowuje do strony z grupami
