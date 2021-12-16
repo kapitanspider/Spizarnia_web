@@ -9,13 +9,14 @@ function getProducts() {
 		var kategoria=""
 		for(var i=0;i<xhr.response.length;i++)
 		{
+			console.log(xhr.response[i]);
 			if(kategoria!=xhr.response[i].categoryProduct.name)
 			{
 				kategoria=xhr.response[i].categoryProduct.name;
 				lista+="<tr><th colspan='3'><h2 class='text-center'>"+kategoria+"</h2></th></tr>"
 			}
 			if(xhr.response[i].quantity>0){
-			lista+="<tr><td>"+xhr.response[i].productName+"</td><td>"+xhr.response[i].quantity+"</td><td><div class='float-right'><button class='btn btn-primary' onclick=productMod('"+xhr.response[i].id+"')>Edytuj</button> <button class='btn btn-primary' onclick=productEditor('"+xhr.response[i].id+"')>Ilość i atrybuty</button> <button class='btn btn-primary' onclick=expDates('"+xhr.response[i].id+"')>Daty Warzności</button> <button class='btn btn-primary' onclick=barCodes('"+xhr.response[i].id+"')>Kody kreskowe</button></div></td></tr>";
+			lista+="<tr><td>"+xhr.response[i].productName+"</td><td>"+xhr.response[i].quantity+" "+xhr.response[i].measure.name+"</td><td><div class='float-right'><button class='btn btn-primary' onclick=productMod('"+xhr.response[i].id+"')>Edytuj</button> <button class='btn btn-primary' onclick=productEditor('"+xhr.response[i].id+"')>Ilość i atrybuty</button> <button class='btn btn-primary' onclick=expDates('"+xhr.response[i].id+"')>Daty Ważności</button> <button class='btn btn-primary' onclick=barCodes('"+xhr.response[i].id+"')>Kody kreskowe</button></div></td></tr>";
 			}
 		}
 		lista+="</table><div class='d-flex justify-content-center'><button class='btn btn-primary' onclick=changeFromZero()>Dodaj produkt</button></div>";
