@@ -9,14 +9,14 @@ function getProducts() {
 		var kategoria=""
 		for(var i=0;i<xhr.response.length;i++)
 		{
-			console.log(xhr.response[i]);
+			//console.log(xhr.response[i]);
 			if(kategoria!=xhr.response[i].categoryProduct.name)
 			{
 				kategoria=xhr.response[i].categoryProduct.name;
 				lista+="<tr><th colspan='3'><h2 class='text-center'>"+kategoria+"</h2></th></tr>"
 			}
 			if(xhr.response[i].quantity>0){
-			lista+="<tr><td>"+xhr.response[i].productName+"</td><td>"+xhr.response[i].quantity+" "+xhr.response[i].measure.name+"</td><td><div class='float-right'><button class='btn btn-primary' onclick=productMod('"+xhr.response[i].id+"')>Edytuj</button> <button class='btn btn-primary' onclick=productEditor('"+xhr.response[i].id+"')>Ilość i atrybuty</button> <button class='btn btn-primary' onclick=expDates('"+xhr.response[i].id+"')>Daty Ważności</button> <button class='btn btn-primary' onclick=barCodes('"+xhr.response[i].id+"')>Kody kreskowe</button></div></td></tr>";
+			lista+="<tr><td>"+xhr.response[i].productName+"</td><td>"+xhr.response[i].quantity+" "+xhr.response[i].measure.name+"</td><td><div class='float-right'><button class='btn btn-primary' onclick=productMod('"+xhr.response[i].id+"')>Edytuj</button> <button class='btn btn-primary' onclick=productEditor('"+xhr.response[i].id+"')>Ilość i atrybuty</button> <button class='btn btn-primary' onclick=expDates('"+xhr.response[i].id+"')>Daty Ważności</button> <button class='btn btn-primary' onclick=barCodes('"+xhr.response[i].id+"')>Kody kreskowe</button> <button class='btn btn-primary' onclick=deleteProduct('"+xhr.response[i].id+"')>Usuń</button></div></td></tr>";
 			}
 		}
 		lista+="</table><div class='d-flex justify-content-center'><button class='btn btn-primary' onclick=changeFromZero()>Dodaj produkt</button></div>";
@@ -344,7 +344,7 @@ function barCodes(id){
 	xhr.responseType = 'json';
 	xhr.setRequestHeader('Content-Type', 'application/json');
 	xhr.onload = () =>{
-		console.log(xhr.response);
+		//console.log(xhr.response);
 		var lista=' ';
 		var today = new Date() 
 		if(xhr.response.barcodeList.length>0)
@@ -403,4 +403,16 @@ function changeFromZero(){
 	xhr.send();
 }
 
+function deleteProduct(id){
+	console.log(id);
+	const xhr = new XMLHttpRequest();
+	xhr.open('DELETE','http://46.41.141.26:8080/products?id='+id);
+		xhr.responseType = 'json';
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.onload = () =>{
+			getProducts()
+		};
+	//console.log(JSON.stringify(product));
+	xhr.send();
+}
 getProducts();
